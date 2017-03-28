@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<f:view>
+    <h:head>
+        <title>UserList</title>
+    </h:head>
+    <h:body>
+        <f:facet name="last">
+            <h:outputStylesheet library="css" name="main.css"/>
+        </f:facet>
+
+        <div align="center" class="main_form">
+            <ui:insert name="buttonsDef"/>
+            <ui:insert name="searchDef"/>
+            <ui:insert name="contentDef"/>
+            <ui:insert name="users_count"/>
+        </div>
+
+    </h:body>
+</f:view>
+</html>
+

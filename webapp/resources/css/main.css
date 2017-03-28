@@ -1,0 +1,167 @@
+.ui-message-info,.ui-message-error,.ui-message-warn,.ui-message-fatal {
+    border: 0!important;
+    margin: 0!important;
+    padding: 0!important;
+}
+
+.ui-messages-error,.ui-message-error {
+    color: #D8000C;
+    background-color: #fff!important;
+}
+
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    color: #000;
+    background: #f0f0f0;
+    width: 100%;
+}
+
+.main_form {
+    width: 30%;
+    margin-left: 33%;
+}
+
+.buttons {
+    /*background: #FFFFFF*/
+}
+
+.button {
+    width: 100px;
+    height: 40px;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    background: #0715d5;
+    border: none;
+    margin-right: 10px
+}
+.item .button {
+    width: 100px;
+    height: 40px;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    background: #0715d5;
+    border: none;
+    margin-right: 10px
+}
+
+.search {
+    margin-top: 30px;
+    position: relative;
+}
+
+.search .button {
+    float: left;
+    width: 100px;
+    height: 40px;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    background: #0715d5;
+    border: none;
+}
+
+.button-text {
+    background: url("#{resource['images:submit.jpg']}") no-repeat;
+    width: 18px;
+    height: 18px;
+    border: none;
+    text-indent: -9999px;
+    position: absolute;
+    top: 12px;
+    left: 15px;
+    z-index: 100;
+    cursor: pointer;
+}
+
+.search-text {
+    height: 15px;
+}
+
+.search-text {
+    color: #838383;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #e2e2e2;
+    float: left;
+    padding: 12px 0px 12px 38px;
+    width: 80%;
+}
+
+.search-text:focus {
+    border: 1px solid #30b0e1;
+    box-shadow: 0px 0px 5px 0px #abdfed;
+}
+
+.search_form {
+    text-align: right;
+}
+
+.item {
+    height: 100%;
+    padding-top: 18px;
+    padding-bottom: 18px;
+    overflow: hidden;
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+    margin-left: 15px;
+    margin-top: 20px;
+    float: left;
+}
+
+.item .info {
+    overflow: hidden;
+}
+
+.item .user_name {
+    height: 40px;
+    color: #c63109;
+    font-size: 18px;
+}
+
+.item .title:hover {
+    text-decoration: none;
+}
+
+
+.box-sh {
+    margin-left: 40%;
+}
+
+.box-sh h1 {
+    float: left;
+    color: #0715d5;
+}
+
+.add-text {
+    height: 15px;
+}
+
+.add-text {
+    color: #838383;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #e2e2e2;
+    float: left;
+    padding: 12px 0px 12px 38px;
+    width: 250px;
+}
+
+.add-text:focus {
+    border: 1px solid #30b0e1;
+    box-shadow: 0px 0px 5px 0px #abdfed;
+}
+
+.add_form {
+    text-align: right;
+}

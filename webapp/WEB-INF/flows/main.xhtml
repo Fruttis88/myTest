@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+
+    <ui:composition template="/WEB-INF/templates/userList.xhtml">
+
+        <ui:define name="buttonsDef">
+
+            <h:form id="buttonsForm">
+                <p:commandButton value="Create" id="btnCreate" styleClass="button" onclick="PF('dlgAddUser').show()"
+                                 type="button"/>
+                <p:dialog id="addUser" header="CreateUser" widgetVar="dlgAddUser" resizable="false" modal="true"
+                          showEffect="fade" onHide="dlgAddUser.hide()">
+
+                    <div class="search" align="center">
+
+                        <h:form styleClass="add_form" id="add_form">
+
+                            <h:outputLabel for="add_name" value="Name:"/>
+                            <p:inputText id="add_name" value="#{addCriteria.name}"/>
+                            <h:outputLabel for="add_age" value="Age:"/>
+                            <p:inputText id="add_age" value="#{addCriteria.age}"/>
+                            <h:outputLabel for="add_isAdmin" value="IsAdmin:"/>
+                            <p:inputText id="add_isAdmin" value="#{addCriteria.isAdmin}"/>
+                        </h:form>
+                    </div>
+                    <p:commandButton id="btnSave" value="Save" styleClass="button" action="addUser"
+                                     update=":buttonsForm :itemForm:usersList :usersCount"/>
+                    <p:commandButton id="btnExit" value="Exit" styleClass="button" immediate="true" global="false"
+                                     onclick="PF('dlgAddUser').hide()"/>
+                </p:dialog>
+            </h:form>
+        </ui:define>
+
+        <ui:define name="searchDef">
+            <h:form styleClass="search_form" id="search_form">
+                <div class="search" align="center">
+
+                    <input type="submit" class="button-text"></input>
+
+                    <h:inputText id="search_string" styleClass="search-text" value="#{searchCriteria.name}"/>
+
+                    <p:commandButton id="btnSearch" value="Search" styleClass="button" action="searchByName"
+                                     update=":itemForm:usersList"/>
+
+                    <script language="javascript">
+                        document.getElementById("search_form:search_string").setAttribute("placeholder", "Search by name");
+                    </script>
+                </div>
+            </h:form>
+        </ui:define>
+
+        <ui:define name="contentDef">
+            <h:form id="itemForm">
+                <div class="item" id="item">
+
+                    <p:dataTable id="usersList" lazy="true" var="b" value="#{userFacade.users}"
+                                 paginator="true" rows="4" paginatorPosition="bottom"
+                                 rowsPerPageTemplate="1,2,4,10,20" paginatorTemplate="{RowsPerPageDropdown} {PageLinks}"
+                                 paginatorAlwaysVisible="true" style="margin-bottom:20px">
+
+                        <f:facet name="header">
+                            Users
+                        </f:facet>
+
+                        <p:column headerText="Id">
+                            <p>#{b.id}</p>
+                        </p:column>
+                        <p:column headerText="Name">
+                            <p>#{b.name}</p>
+                        </p:column>
+                        <p:column headerText="Age">
+                            <p>#{b.age}</p>
+                        </p:column>
+
+                        <p:column headerText="IsAdmin">
+                            <p>#{b.isAdmin}</p>
+                        </p:column>
+
+                        <p:column headerText="CreatedDate">
+                            <p>#{b.createdDate}</p>
+                        </p:column>
+
+                        <p:column>
+                            <p:commandButton value="Delete" action="deleteUser" update=":itemForm:usersList :usersCount">
+                                <f:setPropertyActionListener value="#{b}" target="#{userFacade.selectedUser}"/>
+                            </p:commandButton>
+                        </p:column>
+                        <p:column>
+                            <p:commandButton update=":edit_form:editDialog" value="Edit"
+                                             oncomplete="PF('dlgEditUser').show()" process="@this">
+                                <f:setPropertyActionListener value="#{b}" target="#{userFacade.selectedUser}"/>
+                            </p:commandButton>
+                        </p:column>
+                    </p:dataTable>
+
+                </div>
+            </h:form>
+            <h:form styleClass="add_form" id="edit_form">
+                <p:dialog id="editDialog" modal="true" widgetVar="dlgEditUser" resizable="false"
+                          header="Edit User" closable="false">
+                    <div class="search" align="center">
+
+                        <h:outputLabel for="edit_name" value="Name:"/>
+                        <p:inputText id="edit_name" value="#{userFacade.selectedUser.name}"/>
+                        <h:outputLabel for="edit_age" value="Age:"/>
+                        <p:inputText id="edit_age" value="#{userFacade.selectedUser.age}"/>
+                        <h:outputLabel for="edit_isAdmin" value="IsAdmin:"/>
+                        <p:inputText id="edit_isAdmin" value="#{userFacade.selectedUser.isAdmin}"/>
+
+                        <p:commandButton id="btnEdit" value="Save" styleClass="button" action="editUser"
+                                         update=":edit_form:editDialog :itemForm:usersList"/>
+                        <p:commandButton id="btnCancel" value="Cancel" styleClass="button"
+                                         onclick="PF('dlgEditUser').hide()" immediate="true" global="false"/>
+                    </div>
+                </p:dialog>
+            </h:form>
+        </ui:define>
+
+        <ui:define name="users_count">
+            <div class="box-sh" align="center">
+                <h1><p:outputLabel id="usersCount" value="Users count:  #{userFacade.users.size()}"/></h1>
+            </div>
+        </ui:define>
+    </ui:composition>
+</h:body>
+
+</html>
